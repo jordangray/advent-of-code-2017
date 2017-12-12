@@ -6,10 +6,8 @@ const divisorOf = n => m => n % m === 0
 const quotient = nums => nums
   .sort((a, b) => b - a)
   .reduce((result, next, i) =>
-    !isNaN(result)
-      ? result
-      : next / nums.slice(i + 1).find(divisorOf(next))
-  , NaN)
+    result || next / nums.slice(i + 1).find(divisorOf(next))
+  , 0)
 
 const quotientSum = input => rows(input)
   .map(row => cells(row))
